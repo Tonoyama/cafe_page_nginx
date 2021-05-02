@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>混雑度チェッカー</title><!--titleはタブの名前(Webページのタイトル)-->
+    <link rel="stylesheet" href="static/css/style.css" media="screen">
+    <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
+</head>
+<body>
+    <div>
+        <h1>混雑度チェッカー</h1>
+    </div>
+    <div id="j-title">
+        <h1>J号館１階食堂</h1>
+    </div>
+    <div>
+        {% if counted %}
+            {% if counted > 0 %}
+                <img src="{{ url_for('static', filename = 'images/empty.png') }}">
+            {% elif counted > 60 %}
+                <img src="{{ url_for('static', filename = 'images/little_empty.png') }}">
+            {% elif counted > 80 %}
+                <img src="{{ url_for('static', filename = 'images/crowded.png') }}">
+            {% else %}
+                <h2>Sorry...Not Found🤪</h2>
+		    {% endif %}
+        {% endif %}
+    </div>
+    <div>
+        <form method="post">
+            <h2 class="text-muted">推定人数：{{counted}}</h2>
+        </form>
+    </div>
+    
+    <!--Z号館側-->
+    <div id="z-title">
+        <h1>Z号館２階食堂</h1>
+    </div>
+    <div>
+        {% if counted %}
+            {% if counted > 0 %}
+                <img src="{{ url_for('static', filename = 'images/empty.png') }}">
+            {% elif counted > 60 %}
+                <img src="{{ url_for('static', filename = 'images/little_empty.png') }}">
+            {% elif counted > 80 %}
+                <img src="{{ url_for('static', filename = 'images/crowded.png') }}">
+            {% else %}
+                <h2>Sorry...Not Found🤪</h2>
+		    {% endif %}
+        {% endif %}
+    </div>
+    <div>
+        <form method="post">
+            <h2 class="text-muted">推定人数：{{count2}}</h2>
+        </form>
+    </div>
+    <div class="details-content">
+        <details>
+            <summary><i class="fas fa-map-marked-alt"></i> マップ</summary>
+            <div>
+                <h2>食堂の位置</h2>
+                <div class="modal-wrapper">
+                    <img src="" class="modal-image">
+               </div>
+          
+               <div class="wrapper">
+                    <img src="/static/images/map.png" class="image" data-src="/static/images/map.png">
+                    <p>画像をクリックして拡大 <i class="fas fa-search-plus"></i></p>
+               </div>
+               <h2>建物の詳細</h2>
+               <a href="https://www.osakac.ac.jp/institution/campus/neyagawa/" target="_blank" rel="noopener noreferrer">寝屋川キャンパス</a>
+            </div>
+        </details>
+    </div>
+    <script src="static/js/script.js"></script>
+</body>
+</html>
