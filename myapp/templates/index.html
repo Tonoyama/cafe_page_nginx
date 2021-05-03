@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>混雑度チェッカー</title><!--titleはタブの名前(Webページのタイトル)-->
     <link rel="stylesheet" href="static/css/style.css" media="screen">
-    <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
 </head>
 <body>
     <div>
@@ -58,7 +56,7 @@
     </div>
     <div class="details-content">
         <details>
-            <summary><i class="fas fa-map-marked-alt"></i> マップ</summary>
+            <summary><img src="/static/icons/map-marked-alt-solid.svg" class="map-icon"> マップ</summary>
             <div>
                 <h2>食堂の位置</h2>
                 <div class="modal-wrapper">
@@ -66,14 +64,14 @@
                </div>
           
                <div class="wrapper">
-                    <img src="/static/images/map.png" class="image" data-src="/static/images/map.png">
-                    <p>画像をクリックして拡大 <i class="fas fa-search-plus"></i></p>
+                    <img src="/static/images/map.png" class="image" data-src="/static/images/map.png" loading="auto">
+                    <p>画像をクリックして拡大</p>
                </div>
                <h2>建物の詳細</h2>
                <a href="https://www.osakac.ac.jp/institution/campus/neyagawa/" target="_blank" rel="noopener noreferrer">寝屋川キャンパス</a>
             </div>
         </details>
     </div>
-    <script src="static/js/script.js"></script>
 </body>
+<script src="static/js/script.js" async></script>
 </html>
