@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, render_template, request
 
+
 app = Flask(__name__)
 
 @app.route("/", methods=['POST'])
@@ -25,11 +26,17 @@ def info3():
     return render_template('index.html', count3=count3, addr3=addr3)
 
 
+
 @app.route("/", methods=["GET"])
 def view():
     counted = int(count)+int(count2)
-    return render_template('index.html', counted=counted, count2=count3)
+    counted_2 = int(count3)
 
+    people = {}
+    people['counted'] = counted
+    people['counted_2'] = counted_2
+
+    return render_template('index.html', people=people)
 
 if __name__ == "__main__":
     app.run()

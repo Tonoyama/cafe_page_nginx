@@ -25,7 +25,7 @@ hash_str = str(df_t) + addr
 # sha-256 でハッシュ化
 hash_str = hashlib.sha256(hash_str.encode()).hexdigest()
 
-count = 5
+count = 60
 
 def post_message(addr, count):
     print("post")

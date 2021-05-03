@@ -25,7 +25,7 @@ hash_str = str(df_t) + addr3
 # sha-256 でハッシュ化
 hash_str = hashlib.sha256(hash_str.encode()).hexdigest()
 
-count3 = 5
+count3 = 999
 
 def post_message(addr3, count3):
     print("post")

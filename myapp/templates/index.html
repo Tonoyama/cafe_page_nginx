@@ -14,21 +14,23 @@
         <h1>J号館１階食堂</h1>
     </div>
     <div>
-        {% if counted %}
-            {% if counted > 0 %}
+        {% if people %}
+            {% if people.counted < 60  and people.counted >= 0 %}
                 <img src="{{ url_for('static', filename = 'images/empty.png') }}">
-            {% elif counted > 60 %}
+            {% elif people.counted < 80 and people.counted >= 60 %}
                 <img src="{{ url_for('static', filename = 'images/little_empty.png') }}">
-            {% elif counted > 80 %}
+            {% elif people.counted < 1000 and people.counted >= 80 %}
                 <img src="{{ url_for('static', filename = 'images/crowded.png') }}">
             {% else %}
-                <h2>Sorry...Not Found🤪</h2>
+                <h2>Sorry...No Content</h2>
 		    {% endif %}
         {% endif %}
     </div>
     <div>
         <form method="post">
-            <h2 class="text-muted">推定人数：{{counted}}</h2>
+            {% if people %}
+            <h2 class="text-muted">推定人数：{{people.counted}}</h2>
+            {% endif %}
         </form>
     </div>
     
@@ -37,21 +39,23 @@
         <h1>Z号館２階食堂</h1>
     </div>
     <div>
-        {% if counted %}
-            {% if counted > 0 %}
+        {% if people %}
+            {% if people.counted_2 < 60  and people.counted_2 >= 0 %}
                 <img src="{{ url_for('static', filename = 'images/empty.png') }}">
-            {% elif counted > 60 %}
+                {% elif people.counted_2 < 80 and people.counted_2 >= 60 %}
                 <img src="{{ url_for('static', filename = 'images/little_empty.png') }}">
-            {% elif counted > 80 %}
+                {% elif people.counted_2 < 1000 and people.counted_2 >= 80 %}
                 <img src="{{ url_for('static', filename = 'images/crowded.png') }}">
             {% else %}
-                <h2>Sorry...Not Found🤪</h2>
+                <h2>Sorry...No Content</h2>
 		    {% endif %}
         {% endif %}
     </div>
     <div>
         <form method="post">
-            <h2 class="text-muted">推定人数：{{count2}}</h2>
+            {% if people %}
+            <h2 class="text-muted">推定人数：{{people.counted_2}}</h2>
+            {% endif %}
         </form>
     </div>
     <div class="details-content">
@@ -71,6 +75,9 @@
                <a href="https://www.osakac.ac.jp/institution/campus/neyagawa/" target="_blank" rel="noopener noreferrer">寝屋川キャンパス</a>
             </div>
         </details>
+    </div>
+    <div>
+        <a href="" class="btn btn--orange btn--circle btn--circle-a btn--shadow">更新</a>
     </div>
 </body>
 <script src="static/js/script.js" async></script>
