@@ -1,15 +1,8 @@
 #import bluepy
 import urllib.request, urllib.parse
-import requests
-import hashlib
-import datetime
 
 #scanner = bluepy.btle.Scanner(0)
 #devices = scanner.scan(3)
-
-now_t = datetime.datetime.now()
-
-df_t = now_t.strftime('%Y-%m-%d %H:%M')
 
 #count = 0
 #for i in devices:
@@ -18,19 +11,13 @@ df_t = now_t.strftime('%Y-%m-%d %H:%M')
 #    hash_str = hashlib.sha256(hash_str.encode()).hexdigest()
 #    count += 1
 
-addr = "1a:2b:3c:46:2b:3c"
-
-# ソルト(現在の分数) + MAC アドレス
-hash_str = str(df_t) + addr
-# sha-256 でハッシュ化
-hash_str = hashlib.sha256(hash_str.encode()).hexdigest()
-
+addr = "1a:2b:3c:46:2b:3c 1a:2b:3c:46:2b:3c 1a:2b:3c:4e:5f:6g"
 count = 60
 
 def post_message(addr, count):
     print("post")
     data = {}
-    data["addr"] = hash_str
+    data["addr"] = addr
     data["count"] = count
     url = "http://127.0.0.1:4231"
     try:

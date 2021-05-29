@@ -9,6 +9,8 @@ def info():
     global count, addr
     count = str(request.form['count'])
     addr = str(request.form['addr'])
+    addr = addr.split()
+    addr = set(addr)
     return render_template('index.html', count=count, addr=addr)
 
 @app.route("/2", methods=['POST'])
@@ -16,6 +18,8 @@ def info2():
     global count2, addr2
     count2 = str(request.form['count2'])
     addr2 = str(request.form['addr2'])
+    addr2 = addr2.split()
+    addr2 = set(addr2)
     return render_template('index.html', count2=count2, addr2=addr2)
 
 @app.route("/3", methods=['POST'])
@@ -25,11 +29,9 @@ def info3():
     addr3 = str(request.form['addr3'])
     return render_template('index.html', count3=count3, addr3=addr3)
 
-
-
 @app.route("/", methods=["GET"])
 def view():
-    counted = int(count)+int(count2)
+    counted = len(list(addr | addr2))
     counted_2 = int(count3)
 
     people = {}
