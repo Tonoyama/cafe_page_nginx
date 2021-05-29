@@ -27,12 +27,11 @@ hash_str = hashlib.sha256(hash_str.encode()).hexdigest()
 
 count3 = 999
 
-def post_message(addr3, count3):
+def post_message(addr3):
     print("post")
     data = {}
-    data["addr3"] = hash_str
-    data["count3"] = count3
-    url = "http://127.0.0.1:4231/3"
+    data["addr3"] = addr3
+    url = "http://127.0.0.1:5000/3"
     try:
         data = urllib.parse.urlencode(data).encode("utf-8")
         req = urllib.request.Request(url, data=data, method="POST")
@@ -43,4 +42,4 @@ def post_message(addr3, count3):
         print('Error')
 
 if __name__=='__main__':
-    post_message(addr3,count3)
+    post_message(addr3)

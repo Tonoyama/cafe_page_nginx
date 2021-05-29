@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>混雑度チェッカー</title><!--titleはタブの名前(Webページのタイトル)-->
     <link rel="stylesheet" href="static/css/style.css" media="screen">
+    <script src="../static/jquery/jquery-3.6.0.min.js"></script>
+    <script src="../static/js/script.js"></script>
 </head>
 <body>
     <div>
@@ -14,47 +16,27 @@
         <h1>J号館１階食堂</h1>
     </div>
     <div>
-        {% if people %}
-            {% if people.counted < 60  and people.counted >= 0 %}
-                <img src="{{ url_for('static', filename = 'images/empty.png') }}">
-            {% elif people.counted < 80 and people.counted >= 60 %}
-                <img src="{{ url_for('static', filename = 'images/little_empty.png') }}">
-            {% elif people.counted < 1000 and people.counted >= 80 %}
-                <img src="{{ url_for('static', filename = 'images/crowded.png') }}">
-            {% else %}
-                <h2>Sorry...No Content</h2>
-		    {% endif %}
-        {% endif %}
+        <img id="j_merged_num" src="../static/images/empty.png">
     </div>
     <div>
         <form method="post">
             {% if people %}
-            <h2 class="text-muted">推定人数：{{people.counted}}</h2>
+                <h2 class="text-muted">推定人数：{{people.j_merged_num}}</h2>
             {% endif %}
         </form>
     </div>
-    
+
     <!--Z号館側-->
     <div id="z-title">
         <h1>Z号館２階食堂</h1>
     </div>
     <div>
-        {% if people %}
-            {% if people.counted_2 < 60  and people.counted_2 >= 0 %}
-                <img src="{{ url_for('static', filename = 'images/empty.png') }}">
-                {% elif people.counted_2 < 80 and people.counted_2 >= 60 %}
-                <img src="{{ url_for('static', filename = 'images/little_empty.png') }}">
-                {% elif people.counted_2 < 1000 and people.counted_2 >= 80 %}
-                <img src="{{ url_for('static', filename = 'images/crowded.png') }}">
-            {% else %}
-                <h2>Sorry...No Content</h2>
-		    {% endif %}
-        {% endif %}
+        <img id="z_merged_num" src="../static/images/empty.png">
     </div>
     <div>
         <form method="post">
             {% if people %}
-            <h2 class="text-muted">推定人数：{{people.counted_2}}</h2>
+                <h2 class="text-muted">推定人数：{{people.z_merged_num}}</h2>
             {% endif %}
         </form>
     </div>
@@ -66,7 +48,7 @@
                 <div class="modal-wrapper">
                     <img src="" class="modal-image">
                </div>
-          
+
                <div class="wrapper">
                     <img src="/static/images/map.png" class="image" data-src="/static/images/map.png" loading="auto">
                     <p>画像をクリックして拡大</p>
@@ -76,9 +58,10 @@
             </div>
         </details>
     </div>
-    <div>
-        <a href="" class="btn btn--orange btn--circle btn--circle-a btn--shadow">更新</a>
-    </div>
 </body>
-<script src="static/js/script.js" async></script>
+<script>
+    setInterval(function () {
+        getcurrdata();
+    }, 2000);
+</script>
 </html>

@@ -12,14 +12,12 @@ import urllib.request, urllib.parse
 #    count += 1
 
 addr = "1a:2b:3c:46:2b:3c 1a:2b:3c:46:2b:3c 1a:2b:3c:4e:5f:6g"
-count = 60
 
-def post_message(addr, count):
+def post_message(addr):
     print("post")
     data = {}
     data["addr"] = addr
-    data["count"] = count
-    url = "http://127.0.0.1:4231"
+    url = "http://127.0.0.1:5000"
     try:
         data = urllib.parse.urlencode(data).encode("utf-8")
         req = urllib.request.Request(url, data=data, method="POST")
@@ -30,4 +28,4 @@ def post_message(addr, count):
         print('Error')
 
 if __name__=='__main__':
-    post_message(addr,count)
+    post_message(addr)
