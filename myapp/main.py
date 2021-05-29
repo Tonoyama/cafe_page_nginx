@@ -41,17 +41,12 @@ def view():
     db_session.close()
 
     data = SensorCurrent.query.first()
-    print("\n-------------")
-    print(data)
-    print("-------------\n")
     return render_template('index.html', people=data)
 
 # Ajax処理
 @app.route("/people", methods=['POST'])
 def getCurrData():
-    # SQliteから温度とセンサーの現在データを取得
     people = SensorCurrent.query.first()
-    # JSONに変換して結果を返す
     json_data = {
         'j_merged_num': people.j_merged_num,
         'z_merged_num': people.z_merged_num
