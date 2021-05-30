@@ -31,7 +31,7 @@ def post_message(addr3):
     print("post")
     data = {}
     data["addr3"] = addr3
-    url = "http://127.0.0.1:5000/3"
+    url = "http://127.0.0.1:4231/3"
     try:
         data = urllib.parse.urlencode(data).encode("utf-8")
         req = urllib.request.Request(url, data=data, method="POST")
