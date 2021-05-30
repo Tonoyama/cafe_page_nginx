@@ -1,5 +1,9 @@
 #import bluepy
 import urllib.request, urllib.parse
+import settings
+
+
+#Seed = settings.Seed
 
 #scanner = bluepy.btle.Scanner(0)
 #devices = scanner.scan(3)

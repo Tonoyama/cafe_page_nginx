@@ -1,2 +1,3 @@
 myapp/__pycache__/
 myapp/models/__pycache__/*
+cafe_page/.env
