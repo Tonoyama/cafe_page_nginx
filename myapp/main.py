@@ -19,6 +19,11 @@ def info2():
     addr2 = str(request.form['addr2'])
     addr2 = addr2.split()
     addr2 = set(addr2)
+    counted = len(list(addr | addr2))
+    current = SensorCurrent.query.first()
+    current.j_merged_num = counted
+    db_session.commit()
+    db_session.close()
     return render_template('index.html', addr2=addr2)
 
 @app.route("/3", methods=['POST'])
@@ -27,21 +32,17 @@ def info3():
     addr3 = str(request.form['addr3'])
     addr3 = addr3.split()
     addr3 = set(addr3)
-    return render_template('index.html', addr3=addr3)
-
-@app.route("/", methods=["GET"])
-def view():
-    counted = len(list(addr | addr2))
     counted_2 = len(addr3)
-
     current = SensorCurrent.query.first()
-    current.j_merged_num = counted
     current.z_merged_num = counted_2
     db_session.commit()
     db_session.close()
+    return render_template('index.html', addr3=addr3)
 
-    data = SensorCurrent.query.first()
-    return render_template('index.html', people=data)
+@app.route("/")
+def index():
+    people = SensorCurrent.query.first()
+    return render_template('index.html', people=people)
 
 # Ajax処理
 @app.route("/people", methods=['POST'])
@@ -54,4 +55,4 @@ def getCurrData():
     return jsonify(Result=json.dumps(json_data))
 
 if __name__ == "__main__":
-    app.run()
+    app.run(threaded=True)

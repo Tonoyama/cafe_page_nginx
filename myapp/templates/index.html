@@ -19,11 +19,9 @@
         <img id="j_merged_num" src="../static/images/empty.png">
     </div>
     <div>
-        <form method="post">
-            {% if people %}
-                <h2 class="text-muted">推定人数：{{people.j_merged_num}}</h2>
-            {% endif %}
-        </form>
+        {% if people %}
+            <h2 class="text-muted" id="h2_j_merged_num">{{people.j_merged_num}}</h2>
+        {% endif %}
     </div>
 
     <!--Z号館側-->
@@ -34,11 +32,9 @@
         <img id="z_merged_num" src="../static/images/empty.png">
     </div>
     <div>
-        <form method="post">
-            {% if people %}
-                <h2 class="text-muted">推定人数：{{people.z_merged_num}}</h2>
-            {% endif %}
-        </form>
+        {% if people %}
+            <h2 class="text-muted" id="h2_z_merged_num">{{people.z_merged_num}}</h2>
+        {% endif %}
     </div>
     <div class="details-content">
         <details>
@@ -62,6 +58,6 @@
 <script>
     setInterval(function () {
         getcurrdata();
-    }, 2000);
+    }, 5000);
 </script>
 </html>

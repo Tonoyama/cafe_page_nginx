@@ -37,7 +37,7 @@ function getcurrdata() {
          if (j_merged_num < 60 && j_merged_num >= 0) {
              $("#j_merged_num").attr("src", "../static/images/empty.png");
          } else if (j_merged_num < 80 && j_merged_num >= 60) {
-             $("#j_merged_num").attr("src", "../static/imgages/little_empty.png");
+             $("#j_merged_num").attr("src", "../static/images/little_empty.png");
          } else if (j_merged_num < 1000 && j_merged_num >= 80) {
              $("#j_merged_num").attr("src", "../static/images/crowded.png");
          } else {
@@ -49,7 +49,7 @@ function getcurrdata() {
          if (z_merged_num < 60 && z_merged_num >= 0) {
              $("#z_merged_num").attr("src", "../static/images/empty.png");
          } else if (z_merged_num < 80 && z_merged_num >= 60) {
-             $("#z_merged_num").attr("src", "../static/imgages/little_empty.png");
+             $("#z_merged_num").attr("src", "../static/images/little_empty.png");
          } else if (z_merged_num < 1000 && z_merged_num >= 80) {
              $("#z_merged_num").attr("src", "../static/images/crowded.png");
          } else {
