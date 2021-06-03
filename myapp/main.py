@@ -21,6 +21,10 @@ def info2():
     addr2 = set(addr2)
     counted = len(list(addr | addr2))
     counted = int((counted - 109.25) / 0.7366)
+
+    if counted < 0:
+        counted = 0
+
     current = SensorCurrent.query.first()
     current.j_merged_num = counted
     db_session.commit()
@@ -35,6 +39,10 @@ def info3():
     addr3 = set(addr3)
     counted_2 = len(addr3)
     counted_2 = int((counted_2 - 109.25) / 0.7366)
+
+    if counted_2 < 0:
+        counted_2 = 0
+
     current = SensorCurrent.query.first()
     current.z_merged_num = counted_2
     db_session.commit()
