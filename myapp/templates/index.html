@@ -12,48 +12,38 @@
     <div>
         <h1>混雑度チェッカー</h1>
     </div>
-    <div id="j-title">
-        <h1>J号館１階食堂</h1>
-    </div>
-    <div>
-        <img id="j_merged_num" src="../static/images/empty.png">
-    </div>
-    <div>
-        {% if people %}
-            <h2 class="text-muted" id="h2_j_merged_num">{{people.j_merged_num}}</h2>
-        {% endif %}
-    </div>
 
-    <!--Z号館側-->
-    <div id="z-title">
-        <h1>Z号館２階食堂</h1>
-    </div>
-    <div>
-        <img id="z_merged_num" src="../static/images/empty.png">
-    </div>
-    <div>
-        {% if people %}
-            <h2 class="text-muted" id="h2_z_merged_num">{{people.z_merged_num}}</h2>
-        {% endif %}
-    </div>
-    <div class="details-content">
-        <details>
-            <summary><img src="/static/icons/map-marked-alt-solid.svg" class="map-icon"> マップ</summary>
-            <div>
-                <h2>食堂の位置</h2>
-                <div class="modal-wrapper">
-                    <img src="" class="modal-image">
-               </div>
-
-               <div class="wrapper">
-                    <img src="/static/images/map.png" class="image" data-src="/static/images/map.png" loading="auto">
-                    <p>画像をクリックして拡大</p>
-               </div>
-               <h2>建物の詳細</h2>
-               <a href="https://www.osakac.ac.jp/institution/campus/neyagawa/" target="_blank" rel="noopener noreferrer">寝屋川キャンパス</a>
+    <div class="container-wrapper">
+        <div id="j-container">
+            <div id="j-title">
+                <h1><span id="j">J</span> 号館１階食堂</h1>
             </div>
-        </details>
+            <div>
+                <img id="j_merged_num" src="../static/images/empty.png">
+            </div>
+            <div id="j-people">
+                {% if people %}
+                    <h2 class="text-muted" id="h2_j_merged_num">推定人数：{{people.j_merged_num}}</h2>
+                {% endif %}
+            </div>
+        </div>
+
+        <!--Z号館側-->
+        <div id="z-container">
+            <div id="z-title">
+                <h1><span id="z">Z</span> 号館２階食堂</h1>
+            </div>
+            <div>
+                <img id="z_merged_num" src="../static/images/empty.png">
+            </div>
+            <div id="z-people">
+                {% if people %}
+                    <h2 class="text-muted" id="h2_z_merged_num">推定人数：{{people.z_merged_num}}</h2>
+                {% endif %}
+            </div>
+        </div>
     </div>
+
 </body>
 <script>
     setInterval(function () {

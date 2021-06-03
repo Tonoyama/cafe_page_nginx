@@ -36,10 +36,13 @@ function getcurrdata() {
 
          if (j_merged_num < 60 && j_merged_num >= 0) {
              $("#j_merged_num").attr("src", "../static/images/empty.png");
+             $("#j-title").css("background-color","#9cc147");
          } else if (j_merged_num < 80 && j_merged_num >= 60) {
              $("#j_merged_num").attr("src", "../static/images/little_empty.png");
+             $("#j-title").css("background-color","#FFC107");
          } else if (j_merged_num < 1000 && j_merged_num >= 80) {
              $("#j_merged_num").attr("src", "../static/images/crowded.png");
+             $("#j-title").css("background-color","#f44336");
          } else {
              $("#j_merged_num").html("Sorry...No Content");
          }
@@ -48,12 +51,15 @@ function getcurrdata() {
 
          if (z_merged_num < 60 && z_merged_num >= 0) {
              $("#z_merged_num").attr("src", "../static/images/empty.png");
+             $("#z-title").css("background-color","#9cc147");
          } else if (z_merged_num < 80 && z_merged_num >= 60) {
              $("#z_merged_num").attr("src", "../static/images/little_empty.png");
+             $("#z-title").css("background-color","#FFC107");
          } else if (z_merged_num < 1000 && z_merged_num >= 80) {
              $("#z_merged_num").attr("src", "../static/images/crowded.png");
          } else {
              $("#z_merged_num").html("Sorry...No Content");
+             $("#z-title").css("background-color","#f44336");
          }
 
          $("#h2_z_merged_num").html("推定人数：" + z_merged_num);
