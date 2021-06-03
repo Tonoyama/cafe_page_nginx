@@ -1,24 +1,3 @@
-const modalWrapper = document.querySelector('.modal-wrapper');
-const images = document.querySelectorAll('.image');
-const modalImage = document.querySelector('.modal-image');
-
-images.forEach(function(image) {
-     image.addEventListener('click', function() {
-          modalWrapper.classList.add('show');
-          modalImage.classList.add('show');
-
-          var imageSrc = image.getAttribute('data-src');
-          modalImage.src = imageSrc;
-     });
-});
-
-modalWrapper.addEventListener('click', function() {
-     if (this.classList.contains('show')) {
-          this.classList.remove('show');
-          modalImage.classList.remove('show');
-     }
-});
-
 function getcurrdata() {
      $.ajax({
          type: 'POST',
@@ -57,9 +36,9 @@ function getcurrdata() {
              $("#z-title").css("background-color","#FFC107");
          } else if (z_merged_num < 1000 && z_merged_num >= 80) {
              $("#z_merged_num").attr("src", "../static/images/crowded.png");
+             $("#z-title").css("background-color","#f44336");
          } else {
              $("#z_merged_num").html("Sorry...No Content");
-             $("#z-title").css("background-color","#f44336");
          }
 
          $("#h2_z_merged_num").html("推定人数：" + z_merged_num);
