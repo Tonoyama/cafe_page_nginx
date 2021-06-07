@@ -33,13 +33,13 @@ function getcurrdata() {
         const z_merged_num = json_data.z_merged_num;
         const date = json_data.date;
 
-        if (j_merged_num < 60 && j_merged_num >= 0) {
+        if (j_merged_num < 50 && j_merged_num >= 0) {
             $("#j_merged_num").attr("src", "../static/images/empty.png");
             $("#j-title").css("background-color","#42a5f5");
-        } else if (j_merged_num < 80 && j_merged_num >= 60) {
+        } else if (j_merged_num < 70 && j_merged_num >= 50) {
             $("#j_merged_num").attr("src", "../static/images/little_empty.png");
             $("#j-title").css("background-color","#79d8b8");
-        } else if (j_merged_num < 100 && j_merged_num >= 80) {
+        } else if (j_merged_num < 100 && j_merged_num >= 70) {
             $("#j_merged_num").attr("src", "../static/images/little_crowded.png");
             $("#j-title").css("background-color","#ffd659");
         } else if (j_merged_num < 1000 && j_merged_num >= 100) {
@@ -51,13 +51,13 @@ function getcurrdata() {
 
         $("#h2_j_merged_num").html("推定人数：" + j_merged_num);
 
-        if (z_merged_num < 60 && z_merged_num >= 0) {
+        if (z_merged_num < 50 && z_merged_num >= 0) {
             $("#z_merged_num").attr("src", "../static/images/empty.png");
             $("#z-title").css("background-color","#42a5f5");
-        } else if (z_merged_num < 80 && z_merged_num >= 60) {
+        } else if (z_merged_num < 70 && z_merged_num >= 50) {
             $("#z_merged_num").attr("src", "../static/images/little_empty.png");
             $("#z-title").css("background-color","#79d8b8");
-        } else if (z_merged_num < 100 && z_merged_num >= 80) {
+        } else if (z_merged_num < 100 && z_merged_num >= 70) {
             $("#z_merged_num").attr("src", "../static/images/little_crowded.png");
             $("#z-title").css("background-color","#ffd659");
         } else if (z_merged_num < 1000 && z_merged_num >= 100) {
