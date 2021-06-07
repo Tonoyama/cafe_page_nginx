@@ -89,7 +89,7 @@ def generate_random_data():
     data = SensorCurrent.query.first()
     json_data = json.dumps(
         {
-            "time": datetime.now().strftime("%H:%M:%S"),
+            "time": datetime.now().strftime("%H:%M"),
             "j_value": data.j_merged_num,
             "z_value": data.z_merged_num,
         }
@@ -98,6 +98,7 @@ def generate_random_data():
 
 @app.route("/chart-data")
 def chart_data():
+    time.sleep(20)
     return Response(generate_random_data(), mimetype="text/event-stream")
 
 

@@ -79,143 +79,144 @@ function getcurrdata() {
 /**
  * J 号館のグラフ
  */
- $(document).ready(function () {
-  const config = {
-      type: 'line',
-      data: {
-          labels: [],
-          datasets: [{
-              label: "実測値",
-              backgroundColor: 'rgba(66, 165, 245, 0.3)',
-              borderColor: '#42a5f5',
-              data: [],
-              fill: true,
-          }],
-      },
-      options: {
-          responsive: true,
-          title: {
-              display: true,
-              text: 'Creating Real-Time Charts with Flask'
-          },
-          tooltips: {
-              mode: 'index',
-              intersect: false,
-          },
-          hover: {
-              mode: 'nearest',
-              intersect: true
-          },
-          scales: {
-              xAxes: [{
-                  display: true,
-                  scaleLabel: {
-                      display: true,
-                      labelString: 'Time'
-                  }
-              }],
-              yAxes: [{
+function jChart() {
+const config = {
+    type: 'line',
+    data: {
+        labels: [],
+        datasets: [{
+            label: "実測値",
+            backgroundColor: 'rgba(66, 165, 245, 0.3)',
+            borderColor: '#42a5f5',
+            data: [],
+            fill: true,
+        }],
+    },
+    options: {
+        responsive: true,
+        title: {
+            display: true,
+            text: 'Creating Real-Time Charts with Flask'
+        },
+        tooltips: {
+            mode: 'index',
+            intersect: false,
+        },
+        hover: {
+            mode: 'nearest',
+            intersect: true
+        },
+        scales: {
+            xAxes: [{
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Time'
+                }
+            }],
+            yAxes: [{
                     display: true,
                     id: 'jChart',
                     type: 'linear',
                     scaleLabel: {
                         display: true,
                         labelString: 'Value'
-                  }
-              }]
-          }
-      }
+                }
+            }]
+        }
+    }
 
-  };
+};
 
 
-  const context = document.getElementById('jChart').getContext('2d');
+const context = document.getElementById('jChart').getContext('2d');
 
-  const lineChart = new Chart(context, config);
+const lineChart = new Chart(context, config);
 
-  const source = new EventSource("/chart-data");
+const source = new EventSource("/chart-data");
 
-  source.onmessage = function (event) {
-      const data = JSON.parse(event.data);
-      if (config.data.labels.length === 20) {
-          config.data.labels.shift();
-          config.data.datasets[0].data.shift();
-      }
-      config.data.labels.push(data.time);
-      config.data.datasets[0].data.push(data.j_value);
-      lineChart.update();
-  }
-});
+source.onmessage = function (event) {
+    const data = JSON.parse(event.data);
+    if (config.data.labels.length === 20) {
+        config.data.labels.shift();
+        config.data.datasets[0].data.shift();
+    }
+    config.data.labels.push(data.time);
+    config.data.datasets[0].data.push(data.j_value);
+    lineChart.update();
+}
+};
 
 
 
 /**
  * Z 号館のグラフ
  */
-$(document).ready(function () {
-  const config = {
-      type: 'line',
-      data: {
-          labels: [],
-          datasets: [{
-              label: "実測値",
-              backgroundColor: 'rgba(66, 165, 245, 0.3)',
-              borderColor: '#42a5f5',
-              data: [],
-              fill: true,
-          }],
-      },
-      options: {
-          responsive: true,
-          title: {
-              display: true,
-              text: 'Creating Real-Time Charts with Flask'
-          },
-          tooltips: {
-              mode: 'index',
-              intersect: false,
-          },
-          hover: {
-              mode: 'nearest',
-              intersect: true
-          },
-          scales: {
-            xAxes: [{
-                  ticks: {
-                    maxRotation: 90,
-                    minRotation: 90
-                  },
-                  display: true,
-                  scaleLabel: {
-                      display: true,
-                      labelString: 'Time'
-                  }
-              }],
-              yAxes: [{
-                  display: true,
-                  scaleLabel: {
-                      display: true,
-                      labelString: 'Value'
-                  }
-              }]
-          }
-      }
-  };
+function zChart() {
+const config = {
+    type: 'line',
+    data: {
+        labels: [],
+        datasets: [{
+            label: "実測値",
+            backgroundColor: 'rgba(66, 165, 245, 0.3)',
+            borderColor: '#42a5f5',
+            data: [],
+            fill: true,
+        }],
+    },
+    options: {
+        responsive: true,
+        title: {
+            display: true,
+            text: 'Creating Real-Time Charts with Flask'
+        },
+        tooltips: {
+            mode: 'index',
+            intersect: false,
+        },
+        hover: {
+            mode: 'nearest',
+            intersect: true
+        },
+        scales: {
+        xAxes: [{
+                ticks: {
+                maxRotation: 90,
+                minRotation: 90
+                },
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Time'
+                }
+            }],
+            yAxes: [{
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Value'
+                }
+            }]
+        }
+    }
+};
 
-  const context = document.getElementById('zChart').getContext('2d');
+const context = document.getElementById('zChart').getContext('2d');
 
-  const lineChart = new Chart(context, config);
+const lineChart = new Chart(context, config);
 
-  const source = new EventSource("/chart-data");
+const source = new EventSource("/chart-data");
 
-  source.onmessage = function (event) {
-      const data = JSON.parse(event.data);
-      if (config.data.labels.length === 20) {
-          config.data.labels.shift();
-          config.data.datasets[0].data.shift();
-      }
-      config.data.labels.push(data.time);
-      config.data.datasets[0].data.push(data.z_value);
-      lineChart.update();
-  }
-});
+source.onmessage = function (event) {
+    const data = JSON.parse(event.data);
+    if (config.data.labels.length === 20) {
+        config.data.labels.shift();
+        config.data.datasets[0].data.shift();
+    }
+    config.data.labels.push(data.time);
+    config.data.datasets[0].data.push(data.z_value);
+    lineChart.update();
+}
+};
+
