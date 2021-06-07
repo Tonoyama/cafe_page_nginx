@@ -5,41 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>混雑度チェッカー</title><!--titleはタブの名前(Webページのタイトル)-->
     <link rel="stylesheet" href="static/css/style.css" media="screen">
-    <script src="../static/jquery/jquery-3.6.0.min.js"></script>
+    <script src="../static/js/jquery-3.6.0.min.js"></script>
     <script src="../static/js/script.js"></script>
+    <script src="../static/js/chart.min.js"></script>
+    <script src="../static/js/chartjs-plugin-streaming.min.js"></script>
+    <script src="../static/js/desvg.min.js"></script>
+    <script src="../static/js/holiday.js"></script>
 </head>
 <body>
-    <div>
+    <div id="title">
         <h1>混雑度チェッカー</h1>
     </div>
 
     <div class="container-wrapper">
         <div id="j-container">
             <div id="j-title">
-                <h1><span id="j">J</span> 号館１階食堂</h1>
+                <div><span id="j">J</span> 号館１階食堂</div>
             </div>
             <div>
                 <img id="j_merged_num" src="../static/images/empty.png">
             </div>
             <div id="j-people">
                 {% if people %}
-                    <h2 class="text-muted" id="h2_j_merged_num">推定人数：{{people.j_merged_num}}</h2>
+                    <div class="text-muted" id="h2_j_merged_num">推定人数：{{people.j_merged_num}}</div>
                 {% endif %}
+            </div>
+            <div class="chart">
+                <canvas id="jChart"></canvas>
             </div>
         </div>
 
         <!--Z号館側-->
         <div id="z-container">
             <div id="z-title">
-                <h1><span id="z">Z</span> 号館２階食堂</h1>
+                <div><span id="z">Z</span> 号館２階食堂</div>
             </div>
             <div>
                 <img id="z_merged_num" src="../static/images/empty.png">
             </div>
             <div id="z-people">
                 {% if people %}
-                    <h2 class="text-muted" id="h2_z_merged_num">推定人数：{{people.z_merged_num}}</h2>
+                    <div class="text-muted" id="h2_z_merged_num">推定人数：{{people.z_merged_num}}</div>
                 {% endif %}
+            </div>
+            <div class="chart">
+                <canvas id="zChart"></canvas>
             </div>
         </div>
     </div>
@@ -48,6 +58,6 @@
 <script>
     setInterval(function () {
         getcurrdata();
-    }, 5000);
+    }, 2000);
 </script>
 </html>

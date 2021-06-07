@@ -1,6 +1,6 @@
 #import bluepy
 import urllib.request, urllib.parse
-import settings
+#import settings
 
 
 #Seed = settings.Seed
@@ -21,7 +21,7 @@ def post_message(addr):
     print("post")
     data = {}
     data["addr"] = addr
-    url = "http://127.0.0.1:4231"
+    url = "http://127.0.0.1:5000"
     try:
         data = urllib.parse.urlencode(data).encode("utf-8")
         req = urllib.request.Request(url, data=data, method="POST")
