@@ -25,13 +25,11 @@ hash_str = str(df_t) + addr3
 # sha-256 でハッシュ化
 hash_str = hashlib.sha256(hash_str.encode()).hexdigest()
 
-count3 = 999
-
 def post_message(addr3):
     print("post")
     data = {}
     data["addr3"] = addr3
-    url = "http://127.0.0.1:5000/3"
+    url = "http://localhost:4231/3"
     try:
         data = urllib.parse.urlencode(data).encode("utf-8")
         req = urllib.request.Request(url, data=data, method="POST")
