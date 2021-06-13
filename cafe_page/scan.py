@@ -15,13 +15,14 @@ import urllib.request, urllib.parse
 #    hash_str = hashlib.sha256(hash_str.encode()).hexdigest()
 #    count += 1
 
-addr = "1a:2b:3c:46:2b:3c 1a:2b:3c:46:2b:3c 1a:2b:3c:4e:5f:6g"
+addr = "1a:2b:3c:46:2b:3c 1a:2b:3c:46:2b:3c 1a:2b:3c:4e:5f:6g 9a:2b:3c:4e:5f:6g"
 
 def post_message(addr):
     print("post")
     data = {}
     data["addr"] = addr
-    url = "http://localhost:4231"
+    url = "http://localhost:5000"
+    #url = "http://localhost:4231"
     try:
         data = urllib.parse.urlencode(data).encode("utf-8")
         req = urllib.request.Request(url, data=data, method="POST")

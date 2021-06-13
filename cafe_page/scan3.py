@@ -18,7 +18,7 @@ df_t = now_t.strftime('%Y-%m-%d %H:%M')
 #    hash_str = hashlib.sha256(hash_str.encode()).hexdigest()
 #    count += 1
 
-addr3 = "1a:2b:3c:46:2b:3c"
+addr3 = "1a:2b:3c:46:2b:3c 8a:2b:3c:46:2b:3c"
 
 # ソルト(現在の分数) + MAC アドレス
 hash_str = str(df_t) + addr3
@@ -29,7 +29,8 @@ def post_message(addr3):
     print("post")
     data = {}
     data["addr3"] = addr3
-    url = "http://localhost:4231/3"
+    url = "http://localhost:5000/3"
+    #url = "http://localhost:4231/3"
     try:
         data = urllib.parse.urlencode(data).encode("utf-8")
         req = urllib.request.Request(url, data=data, method="POST")

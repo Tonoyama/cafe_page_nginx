@@ -33,6 +33,7 @@ def info2():
     current.j_merged_num = int(counted)
     db_session.add(current)
     db_session.commit()
+    db_session.close()
     return render_template('index.html', addr2=addr2)
 
 @app.route("/3", methods=['POST'])
@@ -74,7 +75,7 @@ def getCurrData():
 
     db_session.add(data)
     db_session.commit()
-
+    db_session.close()
     people = SensorCurrent.query.first()
 
     json_data = {
