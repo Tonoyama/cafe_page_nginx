@@ -4,7 +4,7 @@ from models.database import db_session
 
 print("実行中...")
 
-users = db_session.query(SensorCurrent).limit(3).all()
+users = db_session.query(SensorCurrent).all()
 
 for user in users:
     j = user.j_merged_num
