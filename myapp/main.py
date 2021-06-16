@@ -1,12 +1,23 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, render_template, request, json, jsonify, Response
+from flask_httpauth import HTTPDigestAuth
 from models.models import SensorCurrent
 from models.database import db_session
 from datetime import datetime
 import random
 import time
 
-app = Flask(__name__)
+app = Flask(__name__, instance_path='/instance')
+app.config.from_pyfile('app.cfg', silent=True)
+app.config['SECRET_KEY'] = 'secret key here'
+app.config['DIGEST_AUTH_FORCE'] = True
+auth = HTTPDigestAuth()
+
+users = {
+    "user": "10ka1pin"
+}
+
+ADMIN_URL="960c9ce04ecc10d80106be257e52a3cf73258a2e4633a045b06a922c1de7208f"
 
 @app.route("/", methods=['POST'])
 def info():
@@ -61,6 +72,34 @@ def index():
     people = SensorCurrent.query.first()
     return render_template('index.html', people=people)
 
+@auth.get_password
+def get_pw(username):
+    if username in users:
+        return users.get(username)
+    return None
+
+@app.route("/"+str(ADMIN_URL))
+@auth.login_required
+def admin_get():
+    username = auth.username()
+    return render_template('admin.html', username=username)
+
+@app.route("/"+str(ADMIN_URL), methods=['POST'])
+def admin_post():
+    j_empty = request.form['j_empty']
+    j_little_empty = request.form['j_little_empty']
+    j_little_crowded = request.form['j_little_crowded']
+    j_crowded = request.form['j_crowded']
+
+    z_empty = request.form['z_empty']
+    z_little_empty = request.form['z_little_empty']
+    z_little_crowded = request.form['z_little_crowded']
+    z_crowded = request.form['z_crowded']
+    return render_template('admin.html', j_empty=j_empty, j_little_empty=j_little_empty, \
+                            j_little_crowded=j_little_crowded, j_crowded=j_crowded, \
+                            z_empty=z_empty, z_little_empty=z_little_empty, \
+                            z_little_crowded=z_little_crowded, z_crowded=z_crowded)
+
 # Ajax処理
 @app.route("/people", methods=['POST'])
 def getCurrData():
@@ -102,6 +141,9 @@ def chart_data():
     time.sleep(5)
     return Response(generate_random_data(), mimetype="text/event-stream")
 
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('404.html', message="STATUS: 404 リクエスト URL が見つからないため、違う URL で試してください")
 
 if __name__ == "__main__":
     app.run(threaded=True)
