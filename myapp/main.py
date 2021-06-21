@@ -82,7 +82,12 @@ def get_pw(username):
 @auth.login_required
 def admin_get():
     username = auth.username()
-    return render_template('admin.html', username=username)
+
+    people = SensorCurrent.query.first()
+    rasp_date = datetime.now() - people.date
+    rasp_date = str(rasp_date)
+
+    return render_template('admin.html', username=username, rasp_date=rasp_date)
 
 @app.route("/"+str(ADMIN_URL), methods=['POST'])
 def admin_post():
