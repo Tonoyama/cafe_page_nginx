@@ -13,6 +13,13 @@
     <script src="../static/js/holiday.js"></script>
 </head>
 <body>
+
+    <h1>ラズパイの稼働状況</h1>
+    <p>Web サーバが立ち上がってから DB を何分更新していないかで判断。</p>
+    <div id="z-people">
+        <h2>{{ rasp_date }}</h2>
+    </div>
+
     <p>{{message}}</p>
     <div class="flex-wrapper">
         <div class="flex-item">
@@ -75,11 +82,5 @@
         </div>
     </div>
 
-
-    <h1>ラズパイの稼働状況</h1>
-    <p>Web サーバが立ち上がってから DB を何分更新していないかで判断。</p>
-    <div id="z-people">
-        <h2>{{ rasp_date }}</h2>
-    </div>
 </body>
 </html>
