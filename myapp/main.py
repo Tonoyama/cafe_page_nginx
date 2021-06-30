@@ -48,12 +48,20 @@ def info2():
     return render_template('index.html', addr2=addr2)
 
 @app.route("/3", methods=['POST'])
-def info3():
+def info():
     global addr3
     addr3 = str(request.form['addr3'])
     addr3 = addr3.split()
     addr3 = set(addr3)
-    counted_2 = len(addr3)
+    return render_template('index.html', addr3=addr3)
+
+@app.route("/3", methods=['POST'])
+def info3():
+    global addr4
+    addr4 = str(request.form['addr4'])
+    addr4 = addr4.split()
+    addr4 = set(addr4)
+    counted_2 = len(list(addr3 | addr4))
     counted_2 = counted_2
     counted_2 = int(counted_2 / 0.7366)
     print("/3 の値：" + str(counted_2))
@@ -65,7 +73,7 @@ def info3():
     current_2.z_merged_num = int(counted_2)
     db_session.add(current_2)
     db_session.commit()
-    return render_template('index.html', addr3=addr3)
+    return render_template('index.html', addr4=addr4)
 
 @app.route("/")
 def index():
@@ -131,19 +139,25 @@ def getCurrData():
     return jsonify(Result=json.dumps(json_data))
 
 def generate_random_data():
-    data = SensorCurrent.query.first()
+    datas = SensorCurrent.query.all()
+
+    for data in datas:
+        j = data.j_merged_num
+        z = data.z_merged_num
+        date = data.date.strftime("%H:%M")
+
     json_data = json.dumps(
         {
-            "time": datetime.now().strftime("%H:%M"),
-            "j_value": data.j_merged_num,
-            "z_value": data.z_merged_num,
+            "j_value": j,
+            "z_value": z,
+            "time": date,
         }
     )
     yield f"data:{json_data}\n\n"
 
 @app.route("/chart-data")
 def chart_data():
-    time.sleep(5)
+    time.sleep(1)
     return Response(generate_random_data(), mimetype="text/event-stream")
 
 @app.errorhandler(404)
