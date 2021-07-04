@@ -36,6 +36,7 @@ def info2():
     counted = len(list(addr | addr2))
     counted = int(counted / 0.7366)
     print(counted)
+    print("J 号館の値：" + str(counted))
 
     if counted < 0:
         counted = 0
@@ -48,15 +49,15 @@ def info2():
     return render_template('index.html', addr2=addr2)
 
 @app.route("/3", methods=['POST'])
-def info():
+def info3():
     global addr3
     addr3 = str(request.form['addr3'])
     addr3 = addr3.split()
     addr3 = set(addr3)
     return render_template('index.html', addr3=addr3)
 
-@app.route("/3", methods=['POST'])
-def info3():
+@app.route("/4", methods=['POST'])
+def info4():
     global addr4
     addr4 = str(request.form['addr4'])
     addr4 = addr4.split()
@@ -64,7 +65,7 @@ def info3():
     counted_2 = len(list(addr3 | addr4))
     counted_2 = counted_2
     counted_2 = int(counted_2 / 0.7366)
-    print("/3 の値：" + str(counted_2))
+    print("Z 号館の値：" + str(counted_2))
 
     if counted_2 < 0:
         counted_2 = 0
