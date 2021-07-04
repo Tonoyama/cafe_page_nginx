@@ -19,6 +19,8 @@ users = {
 
 ADMIN_URL="960c9ce04ecc10d80106be257e52a3cf73258a2e4633a045b06a922c1de7208f"
 
+addr = ""
+
 @app.route("/", methods=['POST'])
 def info():
     global addr
@@ -55,6 +57,8 @@ def info3():
     addr3 = addr3.split()
     addr3 = set(addr3)
     return render_template('index.html', addr3=addr3)
+
+add3 = ""
 
 @app.route("/4", methods=['POST'])
 def info4():
