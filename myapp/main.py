@@ -50,6 +50,8 @@ def info2():
     db_session.close()
     return render_template('index.html', addr2=addr2)
 
+add3 = {''}
+
 @app.route("/3", methods=['POST'])
 def info3():
     global addr3
@@ -57,8 +59,6 @@ def info3():
     addr3 = addr3.split()
     addr3 = set(addr3)
     return render_template('index.html', addr3=addr3)
-
-add3 = {''}
 
 @app.route("/4", methods=['POST'])
 def info4():
