@@ -1,6 +1,9 @@
 # cafe_page_nginx
 食堂の混雑度表示アプリ(3密ポイント以前のバージョン)
 
+
+[![Code Climate](https://codeclimate.com/github/Tonoyama/cafe_page_nginx/badges/gpa.svg)](https://codeclimate.com/github/Tonoyama/cafe_page_nginx)
+
 3密ポイントについては下記URLを参照。
 
 https://www.resume.id/works/b9b5f128f3c8c609
